@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CarWebAPI.Models;
+using CarWebAPI.Services;
 using CarWebAPI.Enums;
 using System.Drawing;
 using System.Text.Json.Serialization.Metadata;
@@ -11,54 +12,61 @@ namespace CarWebAPI.Controllers
     [ApiController]
     public class CarController : ControllerBase
     {
-        private static List<Car> Cars = new List<Car>()
-        {
-            new Car(0, "Toyouta", "Mark", 2000, 234.67m, BodyType.HatchBack, CarColor.White),
-            new Car(1, "Nissan", "R34", 2010, 400.89m, BodyType.HatchBack, CarColor.Blue),
-            new Car(2, "Subaru", "Impreza", 1990, 767m, BodyType.Crossover, CarColor.Gray)
-        };
+        private readonly CarsService _carService;
 
-        [HttpGet]
-        public IActionResult GetAll()
+        public CarController(CarsService carService) =>
+            _carService = carService;
+
+        public async Task<IActionResult> Get()
         {
-            return Ok(Cars);
+            List<Car> cars = await _carService.GetAsync();
+            return Ok(cars);
         }
+        //вернуть статус?
 
-        [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+
+        //private static List<Car> Cars = new List<Car>()
+        //{
+        //    new Car(0, "Toyouta", "Mark", 2000, 234.67m, BodyType.HatchBack, CarColor.White),
+        //    new Car(1, "Nissan", "R34", 2010, 400.89m, BodyType.HatchBack, CarColor.Blue),
+        //    new Car(2, "Subaru", "Impreza", 1990, 767m, BodyType.Crossover, CarColor.Gray)
+        //};
+
+        [HttpGet("{id:length(24)}")]
+        public async Task<IActionResult> Get(string id)
         {
-            var car = Cars.FirstOrDefault(c => c.Id == id);
-            if (car == null)
+            var car = await _carService.GetAsync(id);
+            if (car is null)
                 return NotFound();
             return Ok(car);
         }
 
         [HttpPost]
-        public IActionResult CreateCar([FromBody] Car newCar)
+        public async Task<IActionResult> Post(Car newCar)
         {
-            Cars.Add(newCar);
-            return CreatedAtAction(nameof(GetById), new { id = newCar.Id}, newCar);
+            await _carService.CreateAsync(newCar);
+            return CreatedAtAction(nameof(Get), new { id = newCar.Id }, newCar);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateCar([FromRoute] int id, [FromBody] Car updatedCar)
+        [HttpPut("{id:length(24)}")]
+        public async Task<IActionResult> Update(string id, Car updatedCar)
         {
-            var car = Cars.FirstOrDefault(c => c.Id == id);
-            car.Brand = updatedCar.Brand;
-            car.Model = updatedCar.Model;
-            car.Year = updatedCar.Year;
-            car.Price = updatedCar.Price;
-            car.BodyType = updatedCar.BodyType;
-            car.Color = updatedCar.Color;
+            var car = await _carService.GetAsync(id);
+            if (car is null)
+                return NotFound();
+            updatedCar.Id = car.Id;
+            await _carService.UpdateAsync(id, updatedCar);
+            return Ok(updatedCar);
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var car = await _carService.GetAsync(id);
+            if (car is null)
+                return NotFound();
+            await _carService.RemoveAsync(id);
             return Ok(car);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCar([FromRoute] int id)
-        {
-            var car = Cars.FirstOrDefault(c => c.Id == id);
-            Cars.Remove(car);
-            return NoContent();
         }
     }
 }

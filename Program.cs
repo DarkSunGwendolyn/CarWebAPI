@@ -1,10 +1,16 @@
+using CarWebAPI.Models;
+using CarWebAPI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(
+    options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<CarSelectionDatabaseSettings>(builder.Configuration.GetSection("CarSelectionDatabase"));
+builder.Services.AddSingleton<CarsService>();
 
 var app = builder.Build();
 
