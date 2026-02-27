@@ -60,5 +60,10 @@ namespace CarWebAPI.Services
 
         public async Task RemoveAsync(string id) =>
             await _carsCollection.DeleteOneAsync(x => x.Id == id);
+
+        public async Task DeleteAllAsync() =>
+            await _carsCollection.DeleteManyAsync(Builders<Car>.Filter.Empty);
+        
+
     }
 }

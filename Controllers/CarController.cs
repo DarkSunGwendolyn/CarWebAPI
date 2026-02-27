@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using CarWebAPI.Models;
 using CarWebAPI.Services;
 using CarWebAPI.Enums;
+using CarWebAPI.DTO;
 using System.Drawing;
 using System.Text.Json.Serialization.Metadata;
 
@@ -17,10 +18,23 @@ namespace CarWebAPI.Controllers
         public CarController(CarsService carService) =>
             _carService = carService;
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             List<Car> cars = await _carService.GetAsync();
-            return Ok(cars);
+
+            var result = cars.Select(c => new CarDTO
+            {
+                Id = c.Id,
+                Brand = c.Brand,
+                Model = c.Model,
+                Year = c.Year,
+                Price = c.Price,
+                Color = c.Color,
+                BodyType = c.BodyType
+            }).ToList();
+
+            return Ok(result);
         }
         //вернуть статус?
 
@@ -38,14 +52,48 @@ namespace CarWebAPI.Controllers
             var car = await _carService.GetAsync(id);
             if (car is null)
                 return NotFound();
-            return Ok(car);
+
+            var result = new CarDTO
+            {
+                Id = car.Id,
+                Brand = car.Brand,
+                Model = car.Model,
+                Year = car.Year,
+                Price = car.Price,
+                Color = car.Color,
+                BodyType = car.BodyType
+            };
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Car newCar)
+        public async Task<IActionResult> Post(CreateCarDto newCarDto)
         {
-            await _carService.CreateAsync(newCar);
-            return CreatedAtAction(nameof(Get), new { id = newCar.Id }, newCar);
+            var car = new Car
+            {
+                Brand = newCarDto.Brand,
+                Model = newCarDto.Model,
+                Year = newCarDto.Year,
+                Price = newCarDto.Price,
+                Color = newCarDto.Color,
+                BodyType = newCarDto.BodyType
+            };
+
+            await _carService.CreateAsync(car);
+
+            var result = new CarDTO
+            {
+                Id = car.Id,
+                Brand = car.Brand,
+                Model = car.Model,
+                Year = car.Year,
+                Price = car.Price,
+                Color = car.Color,
+                BodyType = car.BodyType
+            };
+
+            return CreatedAtAction(nameof(Get), new { id = car.Id }, result);
         }
 
         [HttpPut("{id:length(24)}")]
@@ -54,19 +102,43 @@ namespace CarWebAPI.Controllers
             var car = await _carService.GetAsync(id);
             if (car is null)
                 return NotFound();
+
             updatedCar.Id = car.Id;
             await _carService.UpdateAsync(id, updatedCar);
-            return Ok(updatedCar);
+
+            var result = new CarDTO
+            {
+                Id = updatedCar.Id,
+                Brand = updatedCar.Brand,
+                Model = updatedCar.Model,
+                Year = updatedCar.Year,
+                Price = updatedCar.Price,
+                Color = updatedCar.Color,
+                BodyType = updatedCar.BodyType
+            };
+
+            return Ok(result);
         }
 
-        [HttpDelete("{id:length(24)}")]
+        
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var car = await _carService.GetAsync(id);
             if (car is null)
                 return NotFound();
+
             await _carService.RemoveAsync(id);
-            return Ok(car);
+            return NoContent();
         }
+
+        [HttpDelete("all")]
+        public async Task<IActionResult> DeleteAll()
+        {
+            await _carService.DeleteAllAsync();
+            return NoContent();
+        }
+
+
     }
 }
