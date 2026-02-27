@@ -126,7 +126,6 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.json
-*.csproj
 *.http
 
 # Chutzpah Test files
