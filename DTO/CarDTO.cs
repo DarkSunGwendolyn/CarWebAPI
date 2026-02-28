@@ -4,7 +4,7 @@ namespace CarWebAPI.DTO
 {
     public class CarDTO
     {
-        public string Id { get; set; } = null!;      // для получения по ID
+        public string Id { get; set; } = null!;      
         public string Brand { get; set; } = null!;
         public string Model { get; set; } = null!;
         public int Year { get; set; }
