@@ -2,7 +2,7 @@
 
 namespace CarWebAPI.DTO
 {
-    public class CreateCarDto
+    public class CreateCarDTO
     {
         public string Brand { get; set; } = null!;
         public string Model { get; set; } = null!;

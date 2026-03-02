@@ -1,3 +1,4 @@
+using CarWebAPI.Mappers;
 using CarWebAPI.Models;
 using CarWebAPI.Services;
 
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<CarSelectionDatabaseSettings>(builder.Configuration.GetSection("CarSelectionDatabase"));
 builder.Services.AddSingleton<CarsService>();
+builder.Services.AddScoped<ICarMapper, CarMapper>();
 
 var app = builder.Build();
 

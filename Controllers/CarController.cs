@@ -17,8 +17,11 @@ namespace CarWebAPI.Controllers
         private readonly CarsService _carService;
         private ICarMapper _mapper;
 
-        public CarController(CarsService carService) =>
+        public CarController(CarsService carService, ICarMapper mapper)
+        {
             _carService = carService;
+            _mapper = mapper;
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -117,7 +120,7 @@ namespace CarWebAPI.Controllers
             return Ok(result);
         }
 
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -134,6 +137,14 @@ namespace CarWebAPI.Controllers
         {
             await _carService.RemoveAllAsync();
             return NoContent();
+        }
+
+        [HttpGet("filter")]
+        public async Task<IActionResult> Filter(CarFilterDTO filterDTO)
+        {
+            var cars = await _carService.FilterAsync(filterDTO);
+            var result = cars.Select(c => _mapper.MapToDTO(c)).ToList();
+            return Ok(result);
         }
     }
 }

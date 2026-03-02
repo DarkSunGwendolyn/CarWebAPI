@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Drawing;
 using CarWebAPI.Enums;
+using CarWebAPI.DTO;
 
 namespace CarWebAPI.Services
 {
@@ -32,25 +33,47 @@ namespace CarWebAPI.Services
 
         public async Task<Car?> GetAsync(string id) =>
             await _carsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-        public async Task<List<Car>> FilterAsync(decimal lowerPrice, decimal higherPrice)
-        {
-            var filter = Builders<Car>.Filter.Gte(x => x.Price, lowerPrice) &
-                         Builders<Car>.Filter.Lte(x => x.Price, higherPrice);
-            List<Car> results = await _carsCollection.Find(filter).ToListAsync();
-            return results;
+        //public async Task<List<Car>> FilterAsync(decimal lowerPrice, decimal higherPrice)
+        //{
+        //    var filter = Builders<Car>.Filter.Gte(x => x.Price, lowerPrice) &
+        //                 Builders<Car>.Filter.Lte(x => x.Price, higherPrice);
+        //    List<Car> results = await _carsCollection.Find(filter).ToListAsync();
+        //    return results;
 
-        }
-        public async Task<List<Car>> FilterAsync(CarColor color)
+        //}
+        //public async Task<List<Car>> FilterAsync(CarColor color)
+        //{
+        //    var filter = Builders<Car>.Filter.Eq(x => x.Color, color);
+        //    var results = await _carsCollection.Find(filter).ToListAsync();
+        //    return results;
+        //}
+        //public async Task<List<Car>> FilterAsync(BodyType BType)
+        //{
+        //    var filter = Builders<Car>.Filter.Eq(x => x.BodyType, BType);
+        //    var results = await _carsCollection.Find(filter).ToListAsync();
+        //    return results;
+        //}
+
+        public async Task<List<Car>> FilterAsync(CarFilterDTO filterDTO)
         {
-            var filter = Builders<Car>.Filter.Eq(x => x.Color, color);
-            var results = await _carsCollection.Find(filter).ToListAsync();
-            return results;
-        }
-        public async Task<List<Car>> FilterAsync(BodyType BType)
-        {
-            var filter = Builders<Car>.Filter.Eq(x => x.BodyType, BType);
-            var results = await _carsCollection.Find(filter).ToListAsync();
-            return results;
+            var builder = Builders<Car>.Filter;
+            var filters = new List<FilterDefinition<Car>>();
+            if (filterDTO.MinPrice.HasValue)
+                filters.Add(builder.Gte(x => x.Price, filterDTO.MinPrice.Value));
+            if (filterDTO.MaxPrice.HasValue)
+                filters.Add(builder.Lte(x => x.Price, filterDTO.MaxPrice.Value));
+            if (filterDTO.Color.HasValue)
+                filters.Add(builder.Eq(x => x.Color, filterDTO.Color.Value));
+            if (filterDTO.BodyType.HasValue)
+                filters.Add(builder.Eq(x => x.BodyType, filterDTO.BodyType.Value));
+            if (!string.IsNullOrEmpty(filterDTO.Brand))
+                filters.Add(builder.Eq(x => x.Brand, filterDTO.Brand));
+            if (!string.IsNullOrEmpty(filterDTO.Model))
+                filters.Add(builder.Eq(x => x.Model, filterDTO.Model));
+            if (filterDTO.Year.HasValue)
+                filters.Add(builder.Eq(x => x.Year, filterDTO.Year.Value));
+            var combinedFilter = filters.Count > 0 ? builder.And(filters) : builder.Empty;
+            return await _carsCollection.Find(combinedFilter).ToListAsync();
         }
         public async Task CreateAsync(Car newCar) =>
             await _carsCollection.InsertOneAsync(newCar);
