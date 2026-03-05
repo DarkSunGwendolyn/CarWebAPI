@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.3.11520.95 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarWebAPI", "CarWebAPI.csproj", "{08F93DEA-AAA1-55E1-3193-DED96BDE9157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserWebAPI", "UserWebAPI.csproj", "{4F350D31-A14E-DD76-F254-04173716F523}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{08F93DEA-AAA1-55E1-3193-DED96BDE9157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08F93DEA-AAA1-55E1-3193-DED96BDE9157}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08F93DEA-AAA1-55E1-3193-DED96BDE9157}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08F93DEA-AAA1-55E1-3193-DED96BDE9157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F350D31-A14E-DD76-F254-04173716F523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F350D31-A14E-DD76-F254-04173716F523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F350D31-A14E-DD76-F254-04173716F523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F350D31-A14E-DD76-F254-04173716F523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5183E0F7-0822-4467-870B-C7040B86E8E7}
+		SolutionGuid = {3CDCEC26-5ACA-4F21-950D-8C7E166D768E}
 	EndGlobalSection
 EndGlobal

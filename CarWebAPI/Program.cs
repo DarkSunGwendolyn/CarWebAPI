@@ -1,11 +1,26 @@
 using CarWebAPI.Mappers;
 using CarWebAPI.Models;
 using CarWebAPI.Services;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddOpenTelemetry().WithMetrics(metrics =>
+{
+    metrics.AddAspNetCoreInstrumentation();
+    metrics.AddHttpClientInstrumentation();
+    metrics.AddRuntimeInstrumentation();
+    metrics.AddMeter(CarWebAPI.Telemetry.CarMetrics.CarMeter.Name);
+    metrics.AddPrometheusExporter();
+}).WithTracing(tracing =>
+{
+    tracing.AddAspNetCoreInstrumentation();
+    tracing.AddHttpClientInstrumentation();
+});
 builder.Services.AddControllers().AddJsonOptions(
     options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
@@ -23,9 +38,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapPrometheusScrapingEndpoint();
+
+app.UseMiddleware<CarWebAPI.Telemetry.MetricsMiddleware>();
 
 app.MapControllers();
 
