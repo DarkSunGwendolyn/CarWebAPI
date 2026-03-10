@@ -28,6 +28,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<CarSelectionDatabaseSettings>(builder.Configuration.GetSection("CarSelectionDatabase"));
 builder.Services.AddSingleton<CarsService>();
 builder.Services.AddScoped<ICarMapper, CarMapper>();
+builder.WebHost.UseUrls("http://+:5219");
 
 var app = builder.Build();
 
