@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using UserWebAPI.DTO;
+using UserWebAPI.Telemetry;
 
 namespace UserWebAPI.Services
 {
@@ -28,8 +29,11 @@ namespace UserWebAPI.Services
 
         public async Task<User?> GetAsync(string id) =>
             await _userCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-        public async Task CreateAsync(User newUser) =>
+        public async Task CreateAsync(User newUser)
+        {
             await _userCollection.InsertOneAsync(newUser);
+            UserMetrics.UsersAdded.Add(1); 
+        }
         public async Task UpdateAsync(string id, User updateduser) =>
             await _userCollection.ReplaceOneAsync(x => x.Id == id, updateduser);
         public async Task RemoveAsync(string id) =>

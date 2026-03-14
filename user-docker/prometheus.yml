@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'userapi'
+    static_configs:
+      - targets: ['userapi:5220']  # порт как у UserAPI
