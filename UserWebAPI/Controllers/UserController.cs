@@ -18,7 +18,7 @@ namespace UserWebAPI.Controllers
         public UserController(UsersService usersService, IUserMapper mapper)
         {
             _usersService = usersService;
-            _mapper = mapper;   
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace UserWebAPI.Controllers
             return Ok(results);
         }
 
-        [HttpGet]
+        [HttpGet("{id:length(24)}")]
         public async Task<IActionResult> Get(string id)
         {
             var user = await _usersService.GetAsync(id);
@@ -48,7 +48,7 @@ namespace UserWebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id:length(24}")]
+        [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, UpdateUserDTO updatedUser)
         {
             var user = await _usersService.GetAsync(id);
@@ -60,6 +60,7 @@ namespace UserWebAPI.Controllers
             var result = _mapper.MapToDTO(updatedModel);
             return Ok(result);
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -69,14 +70,12 @@ namespace UserWebAPI.Controllers
             await _usersService.RemoveAsync(id);
             return NoContent();
         }
+
         [HttpDelete("all")]
         public async Task<IActionResult> DeleteAll()
         {
             await _usersService.RemoveAllAsync();
             return NoContent();
         }
-
-
-
     }
 }
