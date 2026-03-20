@@ -27,7 +27,7 @@ builder.Services.AddControllers().AddJsonOptions(
     options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.Configure<UsersDatabaseSettings>(builder.Configuration.GetSection("UserDatabase"));
+builder.Services.Configure<UsersDatabaseSettings>(builder.Configuration.GetSection("UsersDatabase"));
 builder.Services.AddSingleton<UsersService>();
 builder.Services.AddScoped<IUserMapper, UserMapper>();
 builder.WebHost.UseUrls("http://+:5220");
