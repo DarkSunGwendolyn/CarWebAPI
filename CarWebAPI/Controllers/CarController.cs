@@ -47,7 +47,6 @@ namespace CarWebAPI.Controllers
         {
             var car = _mapper.Map(newCarDto);
             await _carService.CreateAsync(car);
-            //CarMetrics.CarsCreatedCounter.Add(1);
             var result = _mapper.MapToDTO(car);
             return CreatedAtAction(nameof(Get), new { id = car.Id }, result);
         }

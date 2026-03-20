@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using System.Drawing;
 using CarWebAPI.Enums;
 using CarWebAPI.DTO;
+using CarWebAPI.Telemetry;
 
 namespace CarWebAPI.Services
 {
@@ -81,10 +82,23 @@ namespace CarWebAPI.Services
         public async Task UpdateAsync(string id, Car updatedCar) =>
             await _carsCollection.ReplaceOneAsync(x => x.Id == id, updatedCar);
 
-        public async Task RemoveAsync(string id) =>
+        public async Task RemoveAsync(string id)
+        {
+            CarMetrics.CarsDeletedCounter.Add(1);
             await _carsCollection.DeleteOneAsync(x => x.Id == id);
+        }
 
-        public async Task RemoveAllAsync() =>
+        public async Task RemoveAllAsync()
+        {
+            int count = (int)await _carsCollection.CountDocumentsAsync(Builders<Car>.Filter.Empty);
+            CarMetrics.CarsDeletedCounter.Add(count);
             await _carsCollection.DeleteManyAsync(Builders<Car>.Filter.Empty);
+        }
+
+        public async Task<int> CountAsync()
+        {
+            int count = (int)await _carsCollection.CountDocumentsAsync(Builders<Car>.Filter.Empty);
+            return count;
+        }
     }
 }

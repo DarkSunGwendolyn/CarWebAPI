@@ -45,8 +45,6 @@ app.UseAuthorization();
 
 app.MapPrometheusScrapingEndpoint();
 
-app.UseMiddleware<CarWebAPI.Telemetry.MetricsMiddleware>();
-
 app.MapControllers();
 
 app.Run();
