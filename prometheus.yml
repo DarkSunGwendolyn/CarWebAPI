@@ -34,3 +34,7 @@ scrape_configs:
   - job_name: "сars"
     static_configs:
       - targets: ["carwebapi:5219"]
+
+  - job_name: 'userapi'
+    static_configs:
+      - targets: ['userapi:5220']  	
