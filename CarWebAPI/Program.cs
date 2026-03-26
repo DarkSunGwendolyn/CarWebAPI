@@ -3,7 +3,9 @@ using CarWebAPI.Models;
 using CarWebAPI.Services;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
+using Microsoft.Extensions.Caching.Distributed;
 using Prometheus;
+using Microsoft.AspNetCore.Connections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,15 @@ builder.Services.Configure<CarSelectionDatabaseSettings>(builder.Configuration.G
 builder.Services.AddSingleton<CarsService>();
 builder.Services.AddScoped<ICarMapper, CarMapper>();
 builder.WebHost.UseUrls("http://+:5219");
+builder.Services.AddStackExchangeRedisCache(options => {
+    options.Configuration = builder.Configuration["RedisCacheOptions:Configuration"];
+    options.InstanceName = builder.Configuration["RedisCacheOptions:InstanceName"];
+});
+//builder.Services.AddStackExchangeRedisCache(options =>
+//{
+//    options.Configuration = "redis:6379";
+//    options.InstanceName = "CarWebAPI_";
+//});
 
 var app = builder.Build();
 

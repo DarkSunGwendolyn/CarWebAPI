@@ -84,7 +84,7 @@ namespace CarWebAPI.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IActionResult> Filter(CarFilterDTO filterDTO)
+        public async Task<IActionResult> Filter([FromQuery]CarFilterDTO filterDTO)
         {
             var cars = await _carService.FilterAsync(filterDTO);
             var result = cars.Select(c => _mapper.MapToDTO(c)).ToList();

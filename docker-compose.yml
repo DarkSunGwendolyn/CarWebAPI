@@ -9,8 +9,14 @@ services:
     environment:
       - DOTNET_RUNNING_IN_CONTAINER=true
       - ASPNETCORE_ENVIRONMENT=Development
+      - CarSelectionDatabase__ConnectionString=mongodb://mongodb:27017
+      - CarSelectionDatabase__DatabaseName=CarSelection
+      - CarSelectionDatabase__CarsCollectionName=Cars
+      - RedisCacheOptions__Configuration=redis:6379
+      - RedisCacheOptions__InstanceName=CarSelection_
     depends_on:
       - mongodb
+      - redis
     networks:
       - monitoring
 
@@ -30,6 +36,7 @@ services:
       - UsersDatabase__UsersCollectionName=Users
     depends_on:
       - mongodb
+      - redis
     networks:
       - monitoring
 
@@ -68,6 +75,16 @@ services:
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - monitoring
+
+
+  redis:
+    image: redis:7.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
     networks:
       - monitoring
 
