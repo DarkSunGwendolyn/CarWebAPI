@@ -36,5 +36,10 @@ namespace UserWebAPI.Telemetry
             "users_added_total",
             description: "Total number of users added"
         );
+
+        public static readonly Histogram<double> UsersRequestDuration = UserMeter.CreateHistogram<double>(
+            "users_request_duration_ms",
+            description: "Duration of user-related requests in ms"
+        );
     }
 }

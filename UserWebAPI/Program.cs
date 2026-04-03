@@ -5,6 +5,7 @@ using OpenTelemetry.Trace;
 using Prometheus;
 using UserWebAPI.Telemetry;
 using UserWebAPI.Mappers;
+using Microsoft.Extensions.Caching.Distributed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,10 @@ builder.Services.Configure<UsersDatabaseSettings>(builder.Configuration.GetSecti
 builder.Services.AddSingleton<UsersService>();
 builder.Services.AddScoped<IUserMapper, UserMapper>();
 builder.WebHost.UseUrls("http://+:5220");
+builder.Services.AddStackExchangeRedisCache(options => {
+    options.Configuration = builder.Configuration["RedisCacheOptions:Configuration"];
+    options.InstanceName = builder.Configuration["RedisCacheOptions:InstanceName"];
+});
 
 var app = builder.Build();
 
