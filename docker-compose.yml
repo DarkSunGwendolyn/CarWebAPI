@@ -34,6 +34,8 @@ services:
       - UsersDatabase__ConnectionString=mongodb://mongodb:27017
       - UsersDatabase__DatabaseName=Users
       - UsersDatabase__UsersCollectionName=Users
+      - RedisCacheOptions__Configuration=redis:6379
+      - RedisCacheOptions__InstanceName=UserSelection_
     depends_on:
       - mongodb
       - redis
