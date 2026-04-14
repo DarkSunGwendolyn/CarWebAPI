@@ -16,19 +16,21 @@ namespace CarWebAPI.Controllers
     public class CarController : ControllerBase
     {
         private readonly CarsService _carService;
+        private readonly KafkaRequestProducer _kafkaProducer;
         private ICarMapper _mapper;
 
-        public CarController(CarsService carService, ICarMapper mapper)
+        public CarController(CarsService carService, ICarMapper mapper, KafkaRequestProducer kafkaProducer)
         {
             _carService = carService;
             _mapper = mapper;
+            _kafkaProducer = kafkaProducer;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             List<Car> cars = await _carService.GetAsync();
-            var result = cars.Select(c => _mapper.MapToDTO(c)).ToList();
+            var result = cars.Select(c => _mapper.MapToResponseDTO(c)).ToList();
             return Ok(result);
         }
 
@@ -38,7 +40,7 @@ namespace CarWebAPI.Controllers
             var car = await _carService.GetAsync(id);
             if (car is null)
                 return NotFound();
-            var result = _mapper.MapToDTO(car);
+            var result = _mapper.MapToResponseDTO(car);
             return Ok(result);
         }
 
@@ -46,8 +48,13 @@ namespace CarWebAPI.Controllers
         public async Task<IActionResult> Post(CreateCarDTO newCarDto)
         {
             var car = _mapper.Map(newCarDto);
+            car.ConfirmedAt = null;
+            car.ConfirmationStatus = "Pending";
             await _carService.CreateAsync(car);
-            var result = _mapper.MapToDTO(car);
+            //await _kafkaProducer.SendRequestAsync(car.Id, newCarDto.ConfirmedBy);
+            _ = Task.Run(() => _kafkaProducer.SendRequestAsync(car.Id, newCarDto.ConfirmedBy));
+            var result = _mapper.MapToResponseDTO(car);
+            result.ConfirmationStatus = "Pending";
             return CreatedAtAction(nameof(Get), new { id = car.Id }, result);
         }
 
@@ -59,6 +66,7 @@ namespace CarWebAPI.Controllers
                 return NotFound();
             var updatedModel = _mapper.Map(updatedCar);
             updatedModel.Id = id;
+            updatedModel.ConfirmationStatus = car.ConfirmationStatus;
             await _carService.UpdateAsync(id, updatedModel);
             var result = _mapper.MapToDTO(updatedModel);
             return Ok(result);
@@ -84,11 +92,31 @@ namespace CarWebAPI.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<IActionResult> Filter([FromQuery]CarFilterDTO filterDTO)
+        public async Task<IActionResult> Filter(
+            [FromQuery] int? minPrice,
+            [FromQuery] int? maxPrice,
+            [FromQuery] string? brand,
+            [FromQuery] string? model,
+            [FromQuery] CarColor? color,
+            [FromQuery] BodyType? bodyType,
+            [FromQuery] int? year
+            )
         {
+            var filterDTO = new CarFilterDTO
+            {
+                MinPrice = minPrice,
+                MaxPrice = maxPrice,
+                Brand = brand,
+                Model = model,
+                Color = color,
+                BodyType = bodyType,
+                Year = year
+            };
+
             var cars = await _carService.FilterAsync(filterDTO);
             var result = cars.Select(c => _mapper.MapToDTO(c)).ToList();
             return Ok(result);
         }
+
     }
 }

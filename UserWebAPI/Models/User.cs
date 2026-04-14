@@ -14,5 +14,7 @@ namespace UserWebAPI.Models
         public string? Username { get; set; }
         public string? FName { get; set; }
         public string? LName { get; set; }
+
+        public int RegisteredObjects { get; set; } = 0;
     }
 }

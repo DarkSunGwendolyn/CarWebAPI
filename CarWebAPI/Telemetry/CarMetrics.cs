@@ -9,7 +9,7 @@ namespace CarWebAPI.Telemetry
     {
         public static readonly Meter CarMeter = new Meter("CarWebAPI", "1.0.0");
         public static readonly Counter<int> CarsDeletedCounter = CarMeter.CreateCounter<int>("cars_deleted", description: "Number of cars deleted");
-        public static readonly Histogram<double> CarsRequestDuration = CarMeter.CreateHistogram<double>("cars_request_duration_ms", description: "Duration of car-related HTTP requests in ms");
+        //public static readonly Histogram<double> CarsRequestDuration = CarMeter.CreateHistogram<double>("cars_request_duration_ms", description: "Duration of car-related HTTP requests in ms");
         //static CarMetrics()
         //{
         //    CarsDeletedCounter.Add(0);

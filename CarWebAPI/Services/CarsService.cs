@@ -33,11 +33,12 @@ namespace CarWebAPI.Services
                 (carSelectionDatabaseSettings.Value.CarsCollectionName);
             _cache = cache;
             cachePrefix = redisOptions.Value.InstanceName!;
+
         }
 
         public async Task<List<Car>> GetAsync(int sampleSize = 1000)
         {
-            var sw = Stopwatch.StartNew();
+            //var sw = Stopwatch.StartNew();
             List<Car> results;
             string cacheKey = $"{cachePrefix}_All_{sampleSize}";
             var cachedData = await _cache.GetStringAsync(cacheKey);
@@ -57,14 +58,14 @@ namespace CarWebAPI.Services
                         AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
                     });
             }
-            sw.Stop();
-            CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "GetAll")}); 
+            //sw.Stop();
+            //CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "GetAll")}); 
             return results;
         }
 
         public async Task<Car?> GetAsync(string id)
         {
-            var sw = Stopwatch.StartNew();
+            //var sw = Stopwatch.StartNew();
             Car car;
             string cacheKey = $"{cachePrefix}_ById_{id}";
             var cachedData = await _cache.GetStringAsync(cacheKey);
@@ -86,8 +87,8 @@ namespace CarWebAPI.Services
                         });
                 }
             }
-            sw.Stop();
-            CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "GetById")});
+            //sw.Stop();
+            //CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "GetById")});
             return car;
         }
         //public async Task<List<Car>> FilterAsync(decimal lowerPrice, decimal higherPrice)
@@ -113,7 +114,7 @@ namespace CarWebAPI.Services
 
         public async Task<List<Car>> FilterAsync(CarFilterDTO filterDTO)
         {
-            var sw = Stopwatch.StartNew();
+            //var sw = Stopwatch.StartNew();
             List<Car> results;
             string filterKey = JsonSerializer.Serialize(filterDTO);
             string cacheKey = $"{cachePrefix}_Filter_{filterKey}";
@@ -150,8 +151,8 @@ namespace CarWebAPI.Services
                         AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
                     });
             }
-            sw.Stop();
-            CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "Filter")});
+            //sw.Stop();
+            //CarMetrics.CarsRequestDuration.Record(sw.Elapsed.TotalMilliseconds, new KeyValuePair<string, object?>[] { new ("method",  "Filter")});
             return results;
         }
         public async Task CreateAsync(Car newCar)
@@ -177,6 +178,16 @@ namespace CarWebAPI.Services
         {
             int count = (int)await _carsCollection.CountDocumentsAsync(Builders<Car>.Filter.Empty);
             CarMetrics.CarsDeletedCounter.Add(count);
+            List<Car> cars = await _carsCollection.Find(Builders<Car>.Filter.Empty).ToListAsync();
+            foreach(var car in cars)
+            {
+                string cacheKey = $"{cachePrefix}_ById_{car.Id}";
+                var cachedData = await _cache.GetStringAsync(cacheKey);
+                if (!string.IsNullOrEmpty(cachedData))
+                {
+                   await _cache.RemoveAsync(cacheKey);
+                }
+            }
             await _carsCollection.DeleteManyAsync(Builders<Car>.Filter.Empty);
             await _cache.RemoveAsync($"{cachePrefix}_All_1000");
         }

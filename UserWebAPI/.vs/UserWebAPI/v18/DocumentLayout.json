@@ -1,21 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\",
+  "WorkspaceRootPath": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\myfiles\\psu3course\\carwebapi\\userwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\services\\kafkarequestconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:services\\kafkarequestconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\services\\kafkaresponseproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:services\\kafkaresponseproducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\models\\kafka\\confirmationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:models\\kafka\\confirmationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\models\\kafka\\confirmationresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:models\\kafka\\confirmationresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\myfiles\\psu3course\\carwebapi\\userwebapi\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\myfiles\\psu3course\\carwebapi\\userwebapi\\telemetry\\usermetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\telemetry\\usermetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:telemetry\\usermetrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\myfiles\\psu3course\\carwebapi\\userwebapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\telemetry\\metricsmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:telemetry\\metricsmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|c:\\3 \u043A\u0443\u0440\u0441\\\u043C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\carwebapi\\carwebapi\\userwebapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4F350D31-A14E-DD76-F254-04173716F523}|UserWebAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
@@ -26,47 +54,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsersService.cs",
-              "DocumentMoniker": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Services\\UsersService.cs",
-              "RelativeDocumentMoniker": "Services\\UsersService.cs",
-              "ToolTip": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Services\\UsersService.cs",
-              "RelativeToolTip": "Services\\UsersService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T16:02:40.258Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserMetrics.cs",
-              "DocumentMoniker": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Telemetry\\UserMetrics.cs",
-              "RelativeDocumentMoniker": "Telemetry\\UserMetrics.cs",
-              "ToolTip": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Telemetry\\UserMetrics.cs",
-              "RelativeToolTip": "Telemetry\\UserMetrics.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwCkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T16:01:11.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-03T15:45:40.328Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -77,16 +66,139 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ConfirmationResponse.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\Kafka\\ConfirmationResponse.cs",
+              "RelativeDocumentMoniker": "Models\\Kafka\\ConfirmationResponse.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\Kafka\\ConfirmationResponse.cs",
+              "RelativeToolTip": "Models\\Kafka\\ConfirmationResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T16:05:19.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConfirmationRequest.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\Kafka\\ConfirmationRequest.cs",
+              "RelativeDocumentMoniker": "Models\\Kafka\\ConfirmationRequest.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\Kafka\\ConfirmationRequest.cs",
+              "RelativeToolTip": "Models\\Kafka\\ConfirmationRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T16:04:24.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KafkaResponseProducer.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\KafkaResponseProducer.cs",
+              "RelativeDocumentMoniker": "Services\\KafkaResponseProducer.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\KafkaResponseProducer.cs",
+              "RelativeToolTip": "Services\\KafkaResponseProducer.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA1wCoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T15:29:36.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KafkaRequestConsumer.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\KafkaRequestConsumer.cs",
+              "RelativeDocumentMoniker": "Services\\KafkaRequestConsumer.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\KafkaRequestConsumer.cs",
+              "RelativeToolTip": "Services\\KafkaRequestConsumer.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T15:26:40.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T15:20:17.594Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwC0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T15:20:26.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T15:45:40.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsersService.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\UsersService.cs",
+              "RelativeDocumentMoniker": "Services\\UsersService.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Services\\UsersService.cs",
+              "RelativeToolTip": "Services\\UsersService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T16:02:40.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MetricsMiddleware.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Telemetry\\MetricsMiddleware.cs",
+              "RelativeDocumentMoniker": "Telemetry\\MetricsMiddleware.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Telemetry\\MetricsMiddleware.cs",
+              "RelativeToolTip": "Telemetry\\MetricsMiddleware.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T15:50:07.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserMetrics.cs",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Telemetry\\UserMetrics.cs",
+              "RelativeDocumentMoniker": "Telemetry\\UserMetrics.cs",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\Telemetry\\UserMetrics.cs",
+              "RelativeToolTip": "Telemetry\\UserMetrics.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwCkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-03T16:01:11.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\appsettings.json",
+              "DocumentMoniker": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\MyFiles\\PSU3course\\CarWebAPI\\UserWebAPI\\appsettings.json",
+              "ToolTip": "C:\\3 \u043A\u0443\u0440\u0441\\\u041C\u0438\u043A\u0440\u043E\u0441\u0435\u0440\u0432\u0438\u0441\u044B\\CarWebAPI\\CarWebAPI\\UserWebAPI\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-03T15:41:38.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-03T15:41:38.051Z"
             }
           ]
         },

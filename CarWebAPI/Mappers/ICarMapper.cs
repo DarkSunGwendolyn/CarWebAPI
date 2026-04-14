@@ -11,5 +11,7 @@ namespace CarWebAPI.Mappers
         CarDTO MapToDTO(Car car);
         CreateCarDTO MapToCreateDTO(Car car);
         UpdateCarDTO MapToUpdateDTO(Car car);
+
+        ResponseCarDTO MapToResponseDTO(Car car);
     }
 }

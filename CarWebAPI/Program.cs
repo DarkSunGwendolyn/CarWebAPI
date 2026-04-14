@@ -6,6 +6,7 @@ using OpenTelemetry.Trace;
 using Microsoft.Extensions.Caching.Distributed;
 using Prometheus;
 using Microsoft.AspNetCore.Connections;
+using Confluent.Kafka;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<CarSelectionDatabaseSettings>(builder.Configuration.GetSection("CarSelectionDatabase"));
 builder.Services.AddSingleton<CarsService>();
+builder.Services.AddSingleton<KafkaRequestProducer>();
+builder.Services.AddHostedService<KafkaResponseConsumer>();
 builder.Services.AddScoped<ICarMapper, CarMapper>();
 builder.WebHost.UseUrls("http://+:5219");
 builder.Services.AddStackExchangeRedisCache(options => {

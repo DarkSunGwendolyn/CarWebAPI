@@ -23,5 +23,11 @@ namespace CarWebAPI.Models
         public BodyType BodyType { get; set; }
         [BsonRepresentation(BsonType.String)]
         public CarColor Color { get; set; }
+
+        public string ConfirmationStatus { get; set; } = "Pending";
+        public string? ConfirmedBy { get; set; }
+        public DateTime? ConfirmedAt { get; set; }
+
+
     }
 }

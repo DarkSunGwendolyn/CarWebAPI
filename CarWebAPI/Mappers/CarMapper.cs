@@ -26,6 +26,7 @@ namespace CarWebAPI.Mappers
                 Price = car.Price,
                 Color = car.Color,
                 BodyType = car.BodyType,
+                ConfirmedBy = null
             };
 
         public UpdateCarDTO MapToUpdateDTO(Car car)
@@ -38,6 +39,21 @@ namespace CarWebAPI.Mappers
                 Color = car.Color,
                 BodyType = car.BodyType,
             };
+
+        public ResponseCarDTO MapToResponseDTO(Car car)
+            => new ResponseCarDTO
+            {
+                Id = car.Id,
+                Brand = car.Brand,
+                Model = car.Model,
+                Year = car.Year,
+                Price = car.Price,
+                Color = car.Color,
+                BodyType = car.BodyType,
+                ConfirmedBy = car.ConfirmedBy,
+                ConfirmationStatus = car.ConfirmationStatus,
+            };
+
 
         public Car Map(CarDTO car)
             => new Car
