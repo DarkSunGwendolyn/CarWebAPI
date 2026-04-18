@@ -38,8 +38,7 @@ namespace CarWebAPI.Services
                 obj.ConfirmedBy = response.UserId;
                 obj.ConfirmedAt = response.ConfirmedAt;
                 await carService.UpdateAsync(response.ObjectId, obj);
-                await carService.InvalidateListCacheAsync();
-                
+                await carService.InvalidateListCacheAsync(); 
             }
             
         }

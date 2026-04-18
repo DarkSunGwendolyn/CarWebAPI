@@ -1,4 +1,22 @@
 services:
+  apigateway:
+    build: 
+      context: ./APIGateway
+      dockerfile: Dockerfile
+    container_name: apigateway
+    ports:
+      - "5218:5218"
+    environment:
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CarWebAPI__BaseUrl=http://carwebapi:5219
+      - UserWebAPI__BaseUrl=http://userapi:5220
+    depends_on:
+      - carwebapi
+      - userapi
+    networks:
+      - monitoring
+      
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.0
     container_name: zookeeper
