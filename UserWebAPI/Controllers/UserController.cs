@@ -5,6 +5,7 @@ using UserWebAPI.DTO;
 using UserWebAPI.Mappers;
 using UserWebAPI.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UserWebAPI.Controllers
 {
@@ -39,6 +40,7 @@ namespace UserWebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post(CreateUserDTO userDTO)
         {
@@ -48,6 +50,7 @@ namespace UserWebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, UpdateUserDTO updatedUser)
         {
@@ -61,6 +64,7 @@ namespace UserWebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -71,6 +75,7 @@ namespace UserWebAPI.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("all")]
         public async Task<IActionResult> DeleteAll()
         {

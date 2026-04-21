@@ -1,17 +1,34 @@
 using CarWebAPI.Mappers;
+using CarWebAPI.Messaging;
 using CarWebAPI.Models;
 using CarWebAPI.Services;
+using Confluent.Kafka;
+using Microsoft.AspNetCore.Connections;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.IdentityModel.Tokens;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
-using Microsoft.Extensions.Caching.Distributed;
 using Prometheus;
-using Microsoft.AspNetCore.Connections;
-using Confluent.Kafka;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+    };
+});
+builder.Services.AddAuthorization();
 builder.Services.AddOpenTelemetry().WithMetrics(metrics =>
 {
     metrics.AddAspNetCoreInstrumentation();
@@ -55,6 +72,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapPrometheusScrapingEndpoint();

@@ -1,26 +1,25 @@
-﻿using Confluent.Kafka;
+﻿using CarWebAPI.Models.Kafka;
+using CarWebAPI.Services;
+using Confluent.Kafka;
 using System.Text.Json;
-using UserWebAPI.Models.Kafka;
 
-namespace UserWebAPI.Services
+namespace CarWebAPI.Messaging
 {
-    public class KafkaRequestConsumer : BackgroundService
+    public class KafkaResponseConsumer : BackgroundService
     {
         private readonly IConsumer<string, string> _consumer;
         private readonly IServiceScopeFactory _scopeFactory;
-        private readonly KafkaResponseProducer _producer;
-        public const string RequestTopic = "car-confirmation-requests";
+        public const string ResponseTopic = "car-confirmation-responses";
 
-        public KafkaRequestConsumer(IServiceScopeFactory scopeFactory, KafkaResponseProducer producer, IConfiguration configuration)
+        public KafkaResponseConsumer(IServiceScopeFactory scopeFactory, IConfiguration configuration)
         {
             _scopeFactory = scopeFactory;
-            _producer = producer;
             var bootstrapServers = configuration["Kafka:BootstrapServers"];
 
             var config = new ConsumerConfig
             {
                 BootstrapServers = bootstrapServers,
-                GroupId = "users-service-group",
+                GroupId = "cars-service-group",
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false
             };
@@ -29,26 +28,25 @@ namespace UserWebAPI.Services
 
         }
 
-        private async Task<(string Status, DateTime ConfirmedAt)> ProcessRequestAsync(ConfirmationRequest request)
+        private async Task ProcessResponseAsync(ConfirmationResponse response)
         {
             using var scope = _scopeFactory.CreateScope();
-            var userService = scope.ServiceProvider.GetRequiredService<UsersService>();
-            var user = await userService.GetAsync(request.UserId);
-            if (user != null)
+            var carService = scope.ServiceProvider.GetRequiredService<CarsService>();
+            var obj = await carService.GetAsync(response.ObjectId);
+            if (obj != null)
             {
-                user.RegisteredObjects++;
-                await userService.UpdateAsync(request.UserId, user);
-                return ("Confirmed", DateTime.UtcNow);
+                obj.ConfirmationStatus = response.Status;
+                obj.ConfirmedBy = response.UserId;
+                obj.ConfirmedAt = response.ConfirmedAt;
+                await carService.UpdateAsync(response.ObjectId, obj);
+                await carService.InvalidateListCacheAsync(); 
             }
-            else
-            {
-                return ("Rejected", DateTime.UtcNow);
-            }
+            
         }
 
         protected override Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            _consumer.Subscribe(RequestTopic);
+            _consumer.Subscribe(ResponseTopic);
             return Task.Run(async () =>
             {
                 while (!cancellationToken.IsCancellationRequested)
@@ -56,11 +54,10 @@ namespace UserWebAPI.Services
                     try
                     {
                         var result = _consumer.Consume(cancellationToken);
-                        var request = JsonSerializer.Deserialize<ConfirmationRequest>(result.Message.Value);
-                        if (request != null)
+                        var response = JsonSerializer.Deserialize<ConfirmationResponse>(result.Message.Value);
+                        if (response != null)
                         {
-                            var (status, confirmedAt) = await ProcessRequestAsync(request);
-                            await _producer.SendResponseAsync(request.ObjectId, request.UserId, status, confirmedAt);
+                            await ProcessResponseAsync(response);
                             _consumer.Commit(result);
                         }
                     }
@@ -68,6 +65,7 @@ namespace UserWebAPI.Services
                     {
                         Console.WriteLine(ex.Message);
                     }
+
                 }
             });
         }

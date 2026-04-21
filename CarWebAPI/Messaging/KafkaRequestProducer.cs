@@ -3,7 +3,7 @@ using Confluent.Kafka;
 using System.Text.Json;
 
 
-namespace CarWebAPI.Services
+namespace CarWebAPI.Messaging
 {
     public class KafkaRequestProducer : IDisposable
     {
