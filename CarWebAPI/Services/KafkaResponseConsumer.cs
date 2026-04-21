@@ -45,7 +45,11 @@ namespace CarWebAPI.Services
 
         protected override Task ExecuteAsync(CancellationToken cancellationToken)
         {
+            using var scope = _scopeFactory.CreateScope();
+            var carService = scope.ServiceProvider.GetRequiredService<CarsService>();
+            carService._cache.Remove($"{carService.cachePrefix}_All_1000");
             _consumer.Subscribe(ResponseTopic);
+
             return Task.Run(async () =>
             {
                 while (!cancellationToken.IsCancellationRequested)

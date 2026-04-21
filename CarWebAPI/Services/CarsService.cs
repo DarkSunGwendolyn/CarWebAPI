@@ -10,14 +10,15 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using System.Text.Json;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace CarWebAPI.Services
 {
     public class CarsService
     {
         private readonly IMongoCollection<Car> _carsCollection;
-        private readonly IDistributedCache _cache;
-        private readonly string cachePrefix;
+        public readonly IDistributedCache _cache;
+        public readonly string cachePrefix;
 
         public CarsService(IOptions<CarSelectionDatabaseSettings> carSelectionDatabaseSettings, 
             IDistributedCache cache,
@@ -196,6 +197,11 @@ namespace CarWebAPI.Services
         {
             int count = (int)await _carsCollection.CountDocumentsAsync(Builders<Car>.Filter.Empty);
             return count;
+        }
+
+        public async Task RemoveAllCahce()
+        {
+            await _cache.RemoveAsync($"{cachePrefix}_All_1000");
         }
     }
 }
