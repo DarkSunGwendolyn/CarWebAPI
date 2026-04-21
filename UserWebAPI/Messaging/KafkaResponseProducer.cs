@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using System.Text.Json;
 using UserWebAPI.Models.Kafka;
 
-namespace UserWebAPI.Services
+namespace UserWebAPI.Messaging
 {
     public class KafkaResponseProducer : IDisposable
     {

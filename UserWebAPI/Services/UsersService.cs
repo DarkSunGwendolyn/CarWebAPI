@@ -108,5 +108,10 @@ namespace UserWebAPI.Services
             await _userCollection.DeleteManyAsync(Builders<User>.Filter.Empty);
             await _cache.RemoveAsync($"{_cachePrefix}_All_1000");
         }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            return await _userCollection.Find(x => x.Email == email).FirstOrDefaultAsync();
+        }
     }
 }

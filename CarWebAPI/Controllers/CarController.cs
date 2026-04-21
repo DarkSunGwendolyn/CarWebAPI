@@ -8,6 +8,8 @@ using CarWebAPI.Mappers;
 using System.Drawing;
 using System.Text.Json.Serialization.Metadata;
 using CarWebAPI.Telemetry;
+using CarWebAPI.Messaging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarWebAPI.Controllers
 {
@@ -44,6 +46,7 @@ namespace CarWebAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post(CreateCarDTO newCarDto)
         {
@@ -58,6 +61,7 @@ namespace CarWebAPI.Controllers
             return CreatedAtAction(nameof(Get), new { id = car.Id }, result);
         }
 
+        [Authorize]
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, UpdateCarDTO updatedCar)
         {
@@ -72,7 +76,7 @@ namespace CarWebAPI.Controllers
             return Ok(result);
         }
 
-
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -84,6 +88,7 @@ namespace CarWebAPI.Controllers
             return NoContent();
         }
 
+        [Authorize]
         [HttpDelete("all")]
         public async Task<IActionResult> DeleteAll()
         {

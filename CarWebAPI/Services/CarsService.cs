@@ -172,6 +172,7 @@ namespace CarWebAPI.Services
         {
             CarMetrics.CarsDeletedCounter.Add(1);
             await _carsCollection.DeleteOneAsync(x => x.Id == id);
+            await _cache.RemoveAsync($"{cachePrefix}_All_1000");
             await _cache.RemoveAsync($"{cachePrefix}_ById_{id}");
         }
 
@@ -199,7 +200,9 @@ namespace CarWebAPI.Services
             return count;
         }
 
-        public async Task RemoveAllCahce()
+
+
+        public async Task InvalidateListCacheAsync()
         {
             await _cache.RemoveAsync($"{cachePrefix}_All_1000");
         }
