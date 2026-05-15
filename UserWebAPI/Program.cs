@@ -47,6 +47,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<UsersDatabaseSettings>(builder.Configuration.GetSection("UsersDatabase"));
 builder.Services.AddSingleton<UsersService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddSingleton<KafkaResponseProducer>();
 builder.Services.AddHostedService<KafkaRequestConsumer>();
 builder.Services.AddScoped<IUserMapper, UserMapper>();

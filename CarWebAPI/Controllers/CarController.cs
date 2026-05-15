@@ -76,7 +76,7 @@ namespace CarWebAPI.Controllers
             return Ok(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -88,7 +88,7 @@ namespace CarWebAPI.Controllers
             return NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("all")]
         public async Task<IActionResult> DeleteAll()
         {

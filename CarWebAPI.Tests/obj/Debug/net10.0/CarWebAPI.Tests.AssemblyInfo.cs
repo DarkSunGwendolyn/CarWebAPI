@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarWebAPI.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c65765759beabd308ec67f13cc150948ba6f8a3e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c35d0ee9425c1d769bb17945389ba31f112b1b7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarWebAPI.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarWebAPI.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
